@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "a-frame": "^0.0.0",
+    "aframe-effects": "^0.9.1"
+  }
+}
