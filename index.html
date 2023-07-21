@@ -4,11 +4,11 @@
 <script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.5/aframe/build/aframe-ar.js"></script>
 <body style='margin : 0px; overflow: scroll;'>
   <a-scene embedded arjs>
-    <a-assets>
-      <a-asset-item id="cube" src="/assets/models/cube.gltf"></a-asset-item>
-    </a-assets>
-    <a-entity gltf-model="#cube"></a-entity>
+
+    <a-entity gltf-model="/assets/models/cube.gltf"></a-entity>
+
     <a-marker-camera type="pattern" url= "/assets/images/pattern-AR_MARKER_HND.patt"> </a-marker-camera>
+    
   </a-scene>
 </body>
 </html>
