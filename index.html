@@ -4,8 +4,8 @@
 <script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.5/aframe/build/aframe-ar.js"></script>
 <body style='margin : 0px; overflow: scroll;'>
   <a-scene embedded arjs>
-    <a-entity geometry="primitive: box"
-    material="shader: ocean; color: blue; wave-height: 10">
+    <a-entity geometry="primitive: plane"
+    material="shader: flat; src: /assets/models/Cube_HND">
 </a-entity>
     <a-marker-camera type="pattern" url= "/assets/images/pattern-AR_MARKER_HND.patt"> </a-marker-camera>
   </a-scene>
