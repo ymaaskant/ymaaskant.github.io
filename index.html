@@ -13,11 +13,11 @@
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
-      <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR.gltf" animation-mixer="loop:repeat"></a-asset-item>
+      <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR.gltf" ></a-asset-item>
     </a-assets>
 
       <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
-      <a-entity gltf-model="#testBox"></a-entity>
+      <a-entity gltf-model="#testBox" animation-mixer="loop:pingpong"></a-entity>
 
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
    </a-scene>
