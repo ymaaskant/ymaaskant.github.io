@@ -28,7 +28,9 @@
     >
 
       <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
-      <a-entity gltf-model="#testBox" scale="2 2 2" animation-mixer="loop:pingpong"></a-entity>
+      <a-entity geometry="primitive: sphere" radius="0.005" position="0.25 0.25 0.25" material="color: orange" light="type: point; intensity: 2.0"></a-entity>
+      <a-entity geometry="primitive: sphere" radius="0.005" position="0.3 0.12 0.1" material="color: orange" light="type: point; intensity: 2.0"></a-entity>
+      <a-entity gltf-model="#testBox" scale="1.5 1.5 1.5" animation-mixer="loop:pingpong"></a-entity>
     </a-nft>
     <!-- <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera> -->
     <a-entity camera></a-entity>
