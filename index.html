@@ -1,22 +1,33 @@
 <!doctype HTML>
 <html>
-<head>
-  <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-  <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
-  <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-</head>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
+    <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
+    <script src="https://ymaaskant.github.io/docs/assets/js/aframe-nft.js"></script>
+  </head>
 
-<body style='margin : 0px; overflow: hidden;'>
+  <body style='margin : 0px; overflow: hidden;'>
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR.gltf" ></a-asset-item>
     </a-assets>
-    <a-entity light="type: hemisphere; color: #0FF; groundColor: #F30; intensity: 8"></a-entity>
+    <a-nft
+      type="nft"
+      url="https://ymaaskant.github.io/docs/assets/images/AR_MARKER_HND.iset"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+
       <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
       <a-entity gltf-model="#testBox" scale="2 2 2" animation-mixer="loop:pingpong"></a-entity>
 
-    <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
+    <!-- <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera> -->
+    <a-entity camera></a-entity>
    </a-scene>
-</body>
+  </body>
 </html>
+<!-- <a-entity light="type: hemisphere; color: #0FF; groundColor: #F30; intensity: 8"></a-entity> -->
