@@ -15,9 +15,9 @@
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR.gltf" ></a-asset-item>
     </a-assets>
-
+      <a-entity light="color: #00FFFF; intensity: 1.5" position="-1 1 0"></a-entity>
       <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
-      <a-entity gltf-model="#testBox" animation-mixer="loop:pingpong"></a-entity>
+      <a-entity gltf-model="#testBox" scale="2 2 2" animation-mixer="loop:pingpong"></a-entity>
 
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
    </a-scene>
