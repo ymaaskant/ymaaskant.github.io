@@ -10,14 +10,16 @@
   <body style='margin : 0px; overflow: hidden;'>
     <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
       <button>
-          Registreer nu
+          Registreer je nu!
       </button>
   </div>
+
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR.gltf" ></a-asset-item>
     </a-assets>
+
     <!-- <a-nft
       type="nft"
       url="https://ymaaskant.github.io/docs/assets/images/AR_MARKER_HND.iset"
@@ -28,9 +30,9 @@
     >
   </a-nft> -->
 
-      <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
-      <a-entity geometry="primitive: sphere" radius="0.005" position="0.25 0.25 0.25" material="color: orange" light="type: point; intensity: 2.0"></a-entity>
-      <a-entity geometry="primitive: sphere" radius="0.005" position="0.3 0.12 0.1" material="color: orange" light="type: point; intensity: 2.0"></a-entity>
+      <a-entity geometry="primitive: sphere; radius: 0.005" position="0.25 0.25 0.25" material="color: #ffa500" emissive="#ffa500" light="type: point; intensity: 4.0"></a-entity>
+      <a-entity geometry="primitive: sphere; radius: 0.005" position="0.3 0.12 0.1" material="color: #ffa500" emissive="#ffa500" light="type: point; intensity: 4.0"></a-entity>
+      <a-entity geometry="primitive: sphere; radius: 0.005" position="0.1 0.18 0.15" material="color: #00FFFF" emissive="#00FFFF" light="type: point; intensity: 4.0"></a-entity>
       <a-entity gltf-model="#testBox" scale="1.5 1.5 1.5" animation-mixer="loop:pingpong"></a-entity>
     
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
