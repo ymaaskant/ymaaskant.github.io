@@ -4,10 +4,15 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-    <script src="https://ymaaskant.github.io/docs/assets/js/aframe-nft.js"></script>
+    <!-- <script src="https://ymaaskant.github.io/docs/assets/js/aframe-nft.js"></script> -->
   </head>
-
+ 
   <body style='margin : 0px; overflow: hidden;'>
+    <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+      <button>
+          Registreer nu
+      </button>
+  </div>
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
@@ -24,7 +29,7 @@
 
       <!-- <a-box height="0.1" width="0.1" depth="0.1" src="#texture" ></a-box> -->
       <a-entity gltf-model="#testBox" scale="2 2 2" animation-mixer="loop:pingpong"></a-entity>
-
+    </a-nft>
     <!-- <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera> -->
     <a-entity camera></a-entity>
    </a-scene>
