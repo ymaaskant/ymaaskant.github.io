@@ -19,11 +19,16 @@
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
+      <a-mixin id="text"
+          text="align: center; width: 6;
+               value: Innovatie tafel\n JAAREVENT \n 26 Oktober 2023 \n Registreer nu!;"
+        ></a-mixin>
     </a-assets>
 
       <a-entity gltf-model="#testBox" scale="0.015 0.015 0.015" position="-0 0.75 0" rotation="90 0 0" animation-mixer="loop:repeat"></a-entity>
       <a-entity light="color: white; intensity: 1.5" position="-1 1 0" width="1" height="0.5"></a-entity>
-      <a-entity text="value: Innovatie tafel\n JAAREVENT \n 26 Oktober 2023 \n Registreer nu!;" font="roboto" heigh="0.5" width = "0.5" color = "orange" allign="center" wrap-count="20"></a-entity>
+      <a-text mixin="text" position="-1 0.5 -0.2" wrap-count="80" color="orange"></a-text>
+
     
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
 
