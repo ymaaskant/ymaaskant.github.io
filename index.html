@@ -4,13 +4,11 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-    var toRegistration=()=>{
-      window.location.href="https://www.hellonewday.nl/";
-    }
+
   </head>
  
   <body style='margin : 0px; overflow: hidden;'>
-    
+
     <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
       <button id="register" onclick="toRegistration()">
           Registreer je nu!
@@ -23,7 +21,7 @@
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
     </a-assets>
 
-      <a-entity gltf-model="#testBox" scale="0.02 0.02 0.02" position="-0.25 1 0" rotation="90 0 0" animation-mixer="loop"></a-entity>
+      <a-entity gltf-model="#testBox" scale="0.02 0.02 0.02" position="-0.25 1 0" rotation="90 0 0" animation-mixer="loop:repeat"></a-entity>
       <a-entity light="color: white; intensity: 1.5" position="-1 1 0"></a-entity>
       <a-entity text="value: Hello New Day\n test \n test \n test;" font="roboto" heigh="0.5" width = "0.5" textcolor = "orange" allign="center"></a-entity>
     
