@@ -4,7 +4,7 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-    <!-- <script src="https://ymaaskant.github.io/docs/assets/js/aframe-nft.js"></script> -->
+
   </head>
  
   <body style='margin : 0px; overflow: hidden;'>
@@ -17,29 +17,15 @@
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
-      <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/InnovatieTafelLogo.gltf" ></a-asset-item>
+      <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.gltf" ></a-asset-item>
     </a-assets>
 
-    <!-- <a-nft
-      type="nft"
-      url="https://ymaaskant.github.io/docs/assets/images/AR_MARKER_HND.iset"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-  </a-nft> -->
-
-      <!-- <a-entity geometry="primitive: sphere; radius: 0.01" position="0.25 0.25 0.25" material="color: #ffa500" emissive="#ffa500" light="type: point; intensity: 4.0"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 0.01" position="0.3 0.22 0.4" material="color: #ffa500" emissive="#ffa500" light="type: point; intensity: 4.0"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 0.01" position="-0.25 0.18 0.15" material="color: #00FFFF" emissive="#00FFFF" light="type: point; intensity: 4.0"></a-entity> -->
-      <a-entity gltf-model="#testBox" scale="0.02 0.02 0.02" position="-0.25 1 0" rotation="90 0 0" animation-mixer="loop:pingpong"></a-entity>
+      <a-entity gltf-model="#testBox" scale="0.02 0.02 0.02" position="-0.25 1 0" rotation="90 0 0" animation-mixer="loop"></a-entity>
       <a-entity light="color: white; intensity: 1.5" position="-1 1 0"></a-entity>
       <a-entity text="value: Hello New Day\n test \n test \n test;" font="roboto" heigh="0.5" width = "0.5" textcolor = "orange" allign="center"></a-entity>
     
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
-    <!-- <a-entity camera></a-entity> -->
+
    </a-scene>
   </body>
 </html>
-<!-- <a-entity light="type: hemisphere; color: #0FF; groundColor: #F30; intensity: 8"></a-entity> -->
