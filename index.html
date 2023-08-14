@@ -4,12 +4,15 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-
+    var toRegistration=()=>{
+      window.location.href="https://www.hellonewday.nl/";
+    }
   </head>
  
   <body style='margin : 0px; overflow: hidden;'>
+    
     <div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
-      <button>
+      <button id="register" onclick="toRegistration()">
           Registreer je nu!
       </button>
   </div>
