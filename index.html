@@ -17,8 +17,9 @@
 
   <a-scene embedded arjs>
     <a-assets>
-      <img id="texture" src="https://ymaaskant.github.io/docs/assets/models/Cube_HND.png">
+      <img id="texture" src="https://ymaaskant.github.io/docs/assets/images/logo_jaarevent_inno.png">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
+
       <a-mixin id="text1" text="align: center; width: 6; value: Innovatie tafel;" ></a-mixin>
       <a-mixin id="text2" text="align: center; width: 6; value: JAAREVENT;" ></a-mixin>
       <a-mixin id="text3" text="align: center; width: 6; value: 26 Oktober 2023;" ></a-mixin>
@@ -27,10 +28,11 @@
     </a-assets>
 
       <a-entity gltf-model="#testBox" scale="0.015 0.015 0.015" position="0 1.5 0" rotation="90 0 0" animation-mixer="loop:repeat"></a-entity>
-      <a-text mixin="text1" position="0 0.5 -0.2" height="0.1" width="1" wrap-count="15" color="orange"></a-text>
+      <a-plane src="#texture" height="1" width="0.5" rotation="-90 0 0" position="0 0.5 -0.2"></a-plane>
+      <!-- <a-text mixin="text1" position="0 0.5 -0.2" height="0.1" width="1" wrap-count="15" color="orange"></a-text>
       <a-text mixin="text2" position="0 0.375 -0.2" height="0.125" width="1" wrap-count="10" color="blue"></a-text>
       <a-text mixin="text3" position="0 0.275 -0.2" height="0.1" width="1" wrap-count="15" color="orange"></a-text>
-      <a-text mixin="text4" position="0 0.175 -0.2" height="0.1" width="1" wrap-count="17" color="white"></a-text>
+      <a-text mixin="text4" position="0 0.175 -0.2" height="0.1" width="1" wrap-count="17" color="white"></a-text> -->
     
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
 
