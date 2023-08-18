@@ -4,16 +4,57 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-
+    
+    
+    <style>
+      body {
+          background-color: powderblue;}
+      .btn-container   {
+          display:block;
+          position: fixed;
+      bottom: 1rem;
+      width: 100%;
+      }
+      .btn   {
+          display:flex;
+          height: 60px;
+          background-color: #f59e57;
+          padding-left: 20px;
+          padding-right: 20px;
+          margin:  0 auto;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          width: 300px;
+          }
+      .btn span{
+          font-family: 'Open Sans',Helvetica,Arial,Lucida,sans-serif;
+          font-weight: 800;
+          text-transform: uppercase;
+          font-size: 19px;
+          color: #000000;
+          transition: color 300ms ease 0ms;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          padding: 31px 0;
+          white-space: nowrap;
+          display: flex;
+          vertical-align: center;
+          
+      }   
+      .btn:hover span{
+          color: #EA5929!important;
+      } 
+      a{
+          text-decoration: none;
+      }
+      </style>
   </head>
  
   <body style='margin : 0px; overflow: hidden;'>
 
-    <div style='position: fixed; bottom: 10px; width:100%;  z-index: 1;'>
-      <form action="https://www.hellonewday.nl">
-        <input type="button" style='position: fixed; top: 10px; height:45px; width:100%; border-radius:6px; background-color:orange; text-align: center; z-index: 1;' onclick="location.href='https://hellonewday.nl';" value="Registreer je nu!" />
-      </form>
-  </div>
+ 
 
   <a-scene embedded arjs>
     <a-assets>
@@ -37,5 +78,11 @@
     <a-marker-camera type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false"> </a-marker-camera>
 
    </a-scene>
+
+   <div class="btn-container">
+      <a href="https://hellonewday.nl" class="btn">
+          <span>Registreer hier!</span>
+      </a>
+    </div>
   </body>
 </html>
