@@ -59,7 +59,7 @@
   <a-scene embedded arjs>
     <a-assets>
       <img id="texture_info" src="https://ymaaskant.github.io/docs/assets/images/logo_jaarevent_inno.png">
-      <img id="texture_hall" src="https://ymaaskant.github.io/docs/assets/images/texture_hall.jpg">
+      <img id="texture_hall" src="https://ymaaskant.github.io/docs/assets/images/Texture_hall.jpg">
       <img id="texture_floor_01" src="https://ymaaskant.github.io/docs/assets/images/texture_floor_01.jpg">
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
 
@@ -74,7 +74,9 @@
       <a-entity gltf-model="#testBox" scale="0.005 0.005 0.005" position="0 1.2 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
       <a-plane src="#texture_info" height="0.3" width="0.6" rotation="90 0 0" position="0 0.625 0.3" material="transparent: false; side: double;"></a-plane>
       <a-plane src="#texture_hall" height="1" width="1" rotation="90 0 0" position="0 0 0" material="transparent: false; side: double;"></a-plane>
-      <a-plane src="#texture_floor_01" height="1" width="1" rotation="15 0 0" position="0 0.5 0.5" material="color:red; transparent: false; side: double;"></a-plane>
+      <a-plane src="#texture_floor_01" height="1" width="1" rotation="15 0 0" position="0 0.5 0.5" material="transparent: false; side: double;"></a-plane>
+      <a-plane src="#texture_floor_01" height="1" width="1" rotation="-15 90 0" position="-0.5 0.5 0" material="transparent: false; side: double;"></a-plane>
+      <a-plane src="#texture_floor_01" height="1" width="1" rotation="15 90 0" position="0.5 0.5 0" material="transparent: false; side: double;"></a-plane>
 
       <!-- <a-text mixin="text1" position="0 0.5 -0.2" height="0.1" width="1" wrap-count="15" color="orange"></a-text>
       <a-text mixin="text2" position="0 0.375 -0.2" height="0.125" width="1" wrap-count="10" color="blue"></a-text>
