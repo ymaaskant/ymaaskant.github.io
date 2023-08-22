@@ -8,7 +8,7 @@
     
     <style>
       body {
-          background-color: powderblue;}
+          background-color: black;}
       .btn-container   {
           display:block;
           position: fixed;
@@ -71,10 +71,10 @@
 
     </a-assets>
 
-      <a-entity gltf-model="#testBox" scale="0.015 0.015 0.015" position="0 1.2 0" rotation="0 0 0" animation-mixer="loop:repeat"></a-entity>
-      <a-plane src="#texture_info" height="0.5" width="1" rotation="0 90 0" position="0 0.5 0.1" material="transparent: true"></a-plane>
-      <a-plane src="#texture_hall" height="5" width="5" rotation="0 90 0" position="0 0.5 5" material="transparent: false"></a-plane>
-      <a-plane src="#texture_floor_01" height="5" width="5" rotation="0 0 0" position="0 2.5 0" material="transparent: false"></a-plane>
+      <a-entity gltf-model="#testBox" scale="0.015 0.015 0.015" position="0 1.2 0" rotation="0 0 0" animation-mixer="loop:repeat "></a-entity>
+      <a-plane src="#texture_info" height="0.5" width="1" rotation="0 90 0" position="0 0.5 0.1" material="transparent: true side: double"></a-plane>
+      <a-plane src="#texture_hall" height="5" width="5" rotation="90 0 0" position="0 0 2.5" material="transparent: false side: double"></a-plane>
+      <a-plane src="#texture_floor_01" height="5" width="5" rotation="-15 0 0" position="0 2 -1.5" material="transparent: false side: double"></a-plane>
 
       <!-- <a-text mixin="text1" position="0 0.5 -0.2" height="0.1" width="1" wrap-count="15" color="orange"></a-text>
       <a-text mixin="text2" position="0 0.375 -0.2" height="0.125" width="1" wrap-count="10" color="blue"></a-text>
