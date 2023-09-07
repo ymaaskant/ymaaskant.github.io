@@ -13,31 +13,35 @@
         // console.log(markerEl.getAttribute('rotation','position'));
 
         // get scene
-        console.log("Scene AR");
+        // console.log("Scene AR");
         var sceneAREl = document.querySelector('#sceneAR');
-        console.log(sceneAREl.getAttribute('visible'));
+        // console.log(sceneAREl.getAttribute('visible'));
         var sceneARVisible = !sceneAREl.getAttribute('visible');
-        console.log(sceneARVisible);
+        // console.log(sceneARVisible);
 
-        console.log("Scene 3D");
+        // console.log("Scene 3D");
         var scene3DEl = document.querySelector('#scene3D');
-        console.log(scene3DEl.getAttribute('visible'));
+        // console.log(scene3DEl.getAttribute('visible'));
         var scene3DVisible = !scene3DEl.getAttribute('visible');
-        console.log(scene3DVisible);
+        // console.log(scene3DVisible);
 
         sceneAREl.setAttribute('visible', sceneARVisible);
         scene3DEl.setAttribute('visible', scene3DVisible);
 
         //cameras
+        console.log("marker cameras");
         var primaryCameraEl = document.querySelector('#camera1');
         var setPrimaryCameraActive = !primaryCameraEl.getAttribute('camera').active;
+        console.log(setPrimaryCameraActive);
         primaryCameraEl.setAttribute('camera','active', setPrimaryCameraActive);
+        console.log(primaryCameraEl.getAttribute('camera').active);
 
-
+        console.log("secondary camera");
         var secondaryCameraEl = document.querySelector('#second-camera');
         var setSecondaryCameraActive = !secondaryCameraEl.getAttribute('camera').active;
+        console.log(setSecondaryCameraActive);
         secondaryCameraEl.setAttribute('camera', 'active', setSecondaryCameraActive);
-
+        console.log(secondaryCameraEl.getAttribute('camera').active);
       }
 
     </script>
@@ -142,10 +146,10 @@
   </a-entity>
 
   <!-- 3D scene -->
-  <a-entity id="scene3D" visible="false">
+    <a-entity id="scene3D" visible="false">
     <!-- camera -->
-    <a-entity id="cameraRig" position="100 -0.7 2">
-      <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="90 0 0" look-controls="pointerLockEnabled:false"></a-entity>
+    <a-entity id="cameraRig" position="100 2 0">
+      <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="180 0 0" look-controls="pointerLockEnabled:false"></a-entity>
       </a-entity>
       <!-- objects -->
       <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="100 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
@@ -157,7 +161,7 @@
       <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="102 0.5 0" material="transparent: false; side: single;"></a-plane>
       <a-plane src="" height="1" width="3" rotation="270 180 0" position="100 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
       <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="100 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
-</a-entity>
+    </a-entity>
     
     <!-- <a-entity id="cameraRig" position="1 1 1">
       <a-entity id="second-camera" position="0 0 0" rotation="90 0 0" camera="active:false; fov:100;" look-controls="pointerLockEnabled:false">
@@ -169,7 +173,7 @@
 
 
  
-   <div class="btn-container">
+  <div class="btn-container">
     <button onclick = "swapCameras()" class ="btn"> Click Me </button>
   </div>
 
