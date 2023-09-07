@@ -6,21 +6,38 @@
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
     <script>
       function swapCameras() {
+        //reset marker position
+        // var markerEl=document.querySelector('#marker');
+        // markerEl.setAttribute('position',{x:0,y:0,z:0});
+        // markerEl.setAttribute('rotation',{x:90,y:0,z:0});
+        // console.log(markerEl.getAttribute('rotation','position'));
 
-      //  console.log("camera 2 active: "+ camera2.getAttribute('camera', 'active'));
+        // get scene
+        console.log("Scene AR");
+        var sceneAREl = document.querySelector('#sceneAR');
+        console.log(sceneAREl.getAttribute('visible'));
+        var sceneARVisible = !sceneAREl.getAttribute('visible');
+        console.log(sceneARVisible);
+
+        console.log("Scene 3D");
+        var scene3DEl = document.querySelector('#scene3D');
+        console.log(scene3DEl.getAttribute('visible'));
+        var scene3DVisible = !scene3DEl.getAttribute('visible');
+        console.log(scene3DVisible);
+
+        sceneAREl.setAttribute('visible', sceneARVisible);
+        scene3DEl.setAttribute('visible', scene3DVisible);
+
+        //cameras
         var primaryCameraEl = document.querySelector('#camera1');
         var setPrimaryCameraActive = !primaryCameraEl.getAttribute('camera').active;
-        console.log("primary camera get attribute value: "+primaryCameraEl.getAttribute('camera').active);
-        console.log("primary cam var value: " + setPrimaryCameraActive);
         primaryCameraEl.setAttribute('camera','active', setPrimaryCameraActive);
 
 
         var secondaryCameraEl = document.querySelector('#second-camera');
         var setSecondaryCameraActive = !secondaryCameraEl.getAttribute('camera').active;
-        console.log("secondary get attribute: "+ secondaryCameraEl.getAttribute('camera').active);
-        console.log("var set secondary attribute value: "+ setSecondaryCameraActive);
-        secondCameraEl.setAttribute('camera', 'active', setSecondaryCameraActive);
-        // console.log(secondCameraEl.getAttribute('camera').active);
+        secondaryCameraEl.setAttribute('camera', 'active', setSecondaryCameraActive);
+
       }
 
     </script>
@@ -76,7 +93,8 @@
 
  
 <!-- 3D environments -->
-  <a-scene id="sceneAR" visible="true" embedded arjs>
+  <a-scene embedded arjs>
+    <!-- AR Scene -->
     <a-assets>
       <img id="texture_info" src="https://ymaaskant.github.io/docs/assets/images/logo_jaarevent_inno.png">
       <img id="texture_wall_rear" src="https://ymaaskant.github.io/docs/assets/images/texture_wall_rear.png">
@@ -107,24 +125,39 @@
       <!-- cameras -->
     <!-- <a-marker-camera id="camera1" type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false" fov="110"> </a-marker-camera> -->
 
-    <a-entity id="camera1" camera="active:true; fov:90;" position="0 0 0" look-controls>
-      <a-marker markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
-        <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-        <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 0.625 0.3" material="transparent: true; side: double;"></a-plane>
-        <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="0 -2.5 0" material=";transparent: false; side: double;"></a-plane>
-        <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="0 0.5 1.5" material="transparent: false; side: single;"></a-plane>
-        <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="0 0.5 -1.5" material="transparent: false; side: single;"></a-plane>
-        <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="-2 0.5 0" material="transparent: false; side: single;"></a-plane>
-        <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="2 0.5 0" material="transparent: false; side: single;"></a-plane>
-        <a-plane src="" height="1" width="3" rotation="270 180 0" position="0 0 1" material="color:red; transparent:false;side:single" ></a-plane>
-        <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="0.5 0.4 1" material="color:green; transparent:false;side:single" ></a-plane>
-        </a-marker>
-    </a-entity>
+    <a-entity id="sceneAR" visible="true">
+      <a-entity id="camera1" camera="active:true; fov:90;" position="0 0 0" look-controls>
+        <a-marker id="marker" markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
+          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
+          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 0.625 0.3" material="transparent: true; side: double;"></a-plane>
+          <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="0 -2.5 0" material=";transparent: false; side: double;"></a-plane>
+          <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="0 0.5 1.5" material="transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="0 0.5 -1.5" material="transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="-2 0.5 0" material="transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="2 0.5 0" material="transparent: false; side: single;"></a-plane>
+          <a-plane src="" height="1" width="3" rotation="270 180 0" position="0 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
+          <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="0.5 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
+          </a-marker>
+      </a-entity>
+  </a-entity>
 
-    <a-entity id="cameraRig" position="1 1 1">
+  <!-- 3D scene -->
+  <a-entity id="scene3D" visible="false">
+    <!-- camera -->
+    <a-entity id="cameraRig" position="100 -0.7 2">
       <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="90 0 0" look-controls="pointerLockEnabled:false"></a-entity>
       </a-entity>
-
+      <!-- objects -->
+      <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="100 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
+      <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="100 0.625 0.3" material="transparent: true; side: double;"></a-plane>
+      <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="100 -2.5 0" material=";transparent: false; side: double;"></a-plane>
+      <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="100 0.5 1.5" material="transparent: false; side: single;"></a-plane>
+      <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="100 0.5 -1.5" material="transparent: false; side: single;"></a-plane>
+      <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="98 0.5 0" material="transparent: false; side: single;"></a-plane>
+      <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="102 0.5 0" material="transparent: false; side: single;"></a-plane>
+      <a-plane src="" height="1" width="3" rotation="270 180 0" position="100 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
+      <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="100 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
+</a-entity>
     
     <!-- <a-entity id="cameraRig" position="1 1 1">
       <a-entity id="second-camera" position="0 0 0" rotation="90 0 0" camera="active:false; fov:100;" look-controls="pointerLockEnabled:false">
