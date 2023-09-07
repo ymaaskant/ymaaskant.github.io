@@ -130,19 +130,20 @@
     <!-- <a-marker-camera id="camera1" type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false" fov="110"> </a-marker-camera> -->
 
     <a-entity id="sceneAR" visible="true">
-      <a-entity id="camera1" camera="active:true; fov:90;" position="0 0 0" look-controls>
+      <a-entity id="camera1" camera="active:true; fov:150;" position="0 0 0">
         <a-marker id="marker" markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
-          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 0.625 0.3" material="transparent: true; side: double;"></a-plane>
-          <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="0 -2.5 0" material=";transparent: false; side: double;"></a-plane>
-          <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="0 0.5 1.5" material="transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="0 0.5 -1.5" material="transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="-2 0.5 0" material="transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="2 0.5 0" material="transparent: false; side: single;"></a-plane>
-          <a-plane src="" height="1" width="3" rotation="270 180 0" position="0 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
-          <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="0.5 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
+          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 -1 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
+          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 -0.8 0.3" material="transparent: true; side: double;"></a-plane>
+          <a-plane src="#texture_wall_rear" height="1.5" width="2" rotation="270 180 0" position="0 -2 0" material="color:red; transparent: false; side: double;"></a-plane>
+          <a-plane src="#texture_floor" height="3" width="2" rotation="0 0 0" position="0 -0.5 -0.75" material="color:white; transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_ceiling" height="3" width="2" rotation="0 180 0" position="0 -0.5 0.75" material="color:black;transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_wall_left" height="1.5" width="3" rotation="0 90 -90" position="-1 -0.5 0" material="color:grey; transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_wall_right" height="1.5" width="3" rotation="0 -90 90" position="1 -0.5 0" material="color:grey; transparent: false; side: single;"></a-plane>
+          <!-- <a-plane src="" height="1" width="3" rotation="270 180 0" position="0 0 -2" material="color:red; transparent:false;side:single" ></a-plane> -->
+          <!-- <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="0.5 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane> -->
           </a-marker>
       </a-entity>
+      <!-- <a-marker-camera type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" smoothing="true"></a-marker-camera> -->
   </a-entity>
 
   <!-- 3D scene -->
@@ -150,7 +151,7 @@
     <!-- camera -->
     <a-entity id="cameraRig" position="100 2 0">
       <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="180 0 0" look-controls="pointerLockEnabled:false"></a-entity>
-      </a-entity>
+    </a-entity>
       <!-- objects -->
       <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="100 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
       <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="100 0.625 0.3" material="transparent: true; side: double;"></a-plane>
@@ -162,13 +163,6 @@
       <a-plane src="" height="1" width="3" rotation="270 180 0" position="100 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
       <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="100 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
     </a-entity>
-    
-    <!-- <a-entity id="cameraRig" position="1 1 1">
-      <a-entity id="second-camera" position="0 0 0" rotation="90 0 0" camera="active:false; fov:100;" look-controls="pointerLockEnabled:false">
-
-       </a-entity>
-      </a-entity> -->
-
    </a-scene>
 
 
