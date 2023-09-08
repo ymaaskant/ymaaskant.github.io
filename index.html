@@ -134,16 +134,18 @@
     <a-entity id="sceneAR" visible="true">
       <a-entity id="camera1" camera="active:true; fov:100;" position="0 0 0">
         <a-marker id="marker" markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
-          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 -1 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
+          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 -0.5 -0.3" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
           <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 -0.8 0.3" material="transparent: true; side: double;"></a-plane>
           <a-plane src="#texture_wall_rear" height="1.5" width="2" rotation="270 180 0" position="0 -2 0" material=" transparent: false; side: double;"></a-plane>
-          <a-plane src="#texture_floor" height="3" width="2" rotation="0 0 0" position="0 -0.5 -0.75" material=" transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_ceiling" height="3" width="2" rotation="0 180 0" position="0 -0.5 0.75" material="transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_ceiling" height="3" width="2" rotation="0 0 0" position="0 -0.5 -0.75" material=" transparent: false; side: single;"></a-plane>
+          <a-plane src="#texture_floor" height="3" width="2" rotation="0 180 0" position="0 -0.5 0.75" material="transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_wall_left" height="1.5" width="3" rotation="0 90 -90" position="-1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_wall_right" height="1.5" width="3" rotation="0 -90 90" position="1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_right_front" height="1.5" width="1.5" rotation="0 -90 90 " position = "0.75 -1.25 0" material="transparant:false;side:single;"></a-plane>
-          <a-plane src="#texture_bar" height="0.7" width="1.5" rotation="0 -90 0" position="0 -1.5 0" material="transparant:false;side:double"></a-plane>
-          <a-plane src="#texture_tafel" height="0.7" width="1.5" rotation="0 -90 0 " position="0 1 0" material="transparan:false;side:double"></a-plane>
+          <a-plane src="#texture_wall_right_front" height="1.5" width="1.5" rotation="0 -90 90 " position = "0.7125 0.25 0" material="transparant:false;side:single;"></a-plane>
+          <a-plane src="#texture_bar" height="0.7" width="1.5" rotation="90 0 0" position="-0.075 -1.6 0.5" material="transparant:true;side:double"></a-plane>
+          <a-plane src="#texture_tafel" height="0.7" width="1.5" rotation="90 0 0 " position="0.375 -1 0.44" material="transparan:true;side:double"></a-plane>
+          <a-plane height="1.5" width="0.25" position="0.875 1 0" rotation="90 0 0" material="color:black;side:double;"></a-plane>
+          <a-plane height="1.5" width="0.25" position="0.875 0.25 -0.75" material="color:black;side:double;"></a-plane>
           </a-marker>
       </a-entity>
       <!-- <a-marker-camera type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" smoothing="true"></a-marker-camera> -->
