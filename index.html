@@ -108,7 +108,7 @@
       <img id="texture_floor" src="https://ymaaskant.github.io/docs/assets/images/texture_floor.png">
       <img id="texture_ceiling" src="https://ymaaskant.github.io/docs/assets/images/texture_ceiling.png">
       <img id="texture_bar" src="https://ymaaskant.github.io/docs/assets/images/texture_bar.png">
-      <img id="texture_tafel" src="https://ymaaskant.github.io/docs/assets/images/texture_tafel">
+      <img id="texture_tafel" src="https://ymaaskant.github.io/docs/assets/images/texture_tafel.png">
 
       <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
       <!-- <a-mixin id="text1" text="align: center; width: 6; value: Innovatie tafel;" ></a-mixin>
@@ -135,15 +135,15 @@
       <a-entity id="camera1" camera="active:true; fov:110;" position="0 0 0">
         <a-marker id="marker" markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
           <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 -0.5 -0.3" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 -0.8 0.3" material="color:white;transparent: false; side: double;"></a-plane>
+          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 -0.8 0.3" material="transparent: true; side: double;"></a-plane>
           <a-plane src="#texture_wall_rear" height="1.5" width="2" rotation="270 180 0" position="0 -2 0" material=" transparent: false; side: double;"></a-plane>
           <a-plane src="#texture_ceiling" height="3" width="2" rotation="0 0 0" position="0 -0.5 -0.75" material=" transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_floor" height="3" width="2" rotation="0 180 0" position="0 -0.5 0.75" material="transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_wall_left" height="1.5" width="3" rotation="0 90 -90" position="-1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_wall_right" height="1.5" width="3" rotation="0 -90 90" position="1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
           <a-plane src="#texture_wall_right_front" height="1.5" width="1.5" rotation="0 -90 90 " position = "0.75 0.25 0" material="transparant:false;side:single;"></a-plane>
-          <a-plane src="#texture_bar" height="0.8" width="1.75" rotation="270 0 0" position="-0.15 -1.6 0.4" material="transparent: true; side: double;"></a-plane>
-          <a-plane src="#texture_tafel" height="0.7" width="1.5" rotation="90 0 0 " position="0.375 -1 0.44" material="transparent: true; side: double;"></a-plane>
+          <a-plane src="#texture_bar" height="0.6" width="1.4" rotation="270 0 0" position="-0.2 -1.6 0.3" material="transparent: true; side: double;"></a-plane>
+          <a-plane src="#texture_tafel" height="0.6" width="1" rotation="90 0 0 " position="0.375 -1 0.3" material="transparent: true; side: double;"></a-plane>
           <a-plane height="1.5" width="0.25" position="0.875 1 0" rotation="90 0 0" material="color:black;side:double;"></a-plane>
           <a-plane height="1.5" width="0.25" position="0.875 0.25 -0.75" material="color:black;side:double;"></a-plane>
           </a-marker>
