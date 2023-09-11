@@ -10,6 +10,26 @@
           id="texture_jsp_solid"
           src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_basecolor.png"
         />
+        <img
+          id="texture_jsp_AO"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_ambientocclusion.png"
+        />
+        <img
+          id="texture_jsp_height"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_height.png"
+        />
+        <img
+          id="texture_jsp_rough"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_roughness.png"
+        />
+        <img
+          id="texture_jsp_normal"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_normal.png"
+        />
+        <img
+          id="texture_jsp_metallic"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_metallic.png"
+        />
       </a-assets>
       <a-plane
         src="#texture_jsp_solid"
@@ -17,7 +37,7 @@
         width="10"
         rotation="270 0 0"
         position="0 0 0"
-        material="transparent: true; side: double;"
+        material="src:#texture_jsp_solid; ambientOcclusionMap: #texture_jsp_A; displacementMap: #texture_jsp_height;"
       ></a-plane>
     </a-scene>
   </body>
