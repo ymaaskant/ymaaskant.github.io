@@ -4,93 +4,6 @@
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script>
     <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
-    <script>
-      function swapCameras() {
-        //reset marker position
-        // var markerEl=document.querySelector('#marker');
-        // markerEl.setAttribute('position',{x:0,y:0,z:0});
-        // markerEl.setAttribute('rotation',{x:90,y:0,z:0});
-        // console.log(markerEl.getAttribute('rotation','position'));
-
-        // get scene
-        // console.log("Scene AR");
-        var sceneAREl = document.querySelector('#sceneAR');
-        // console.log(sceneAREl.getAttribute('visible'));
-        var sceneARVisible = !sceneAREl.getAttribute('visible');
-        // console.log(sceneARVisible);
-
-        // console.log("Scene 3D");
-        var scene3DEl = document.querySelector('#scene3D');
-        // console.log(scene3DEl.getAttribute('visible'));
-        var scene3DVisible = !scene3DEl.getAttribute('visible');
-        // console.log(scene3DVisible);
-
-        sceneAREl.setAttribute('visible', sceneARVisible);
-        scene3DEl.setAttribute('visible', scene3DVisible);
-
-        //cameras
-        console.log("marker cameras");
-        var primaryCameraEl = document.querySelector('#camera1');
-        var setPrimaryCameraActive = !primaryCameraEl.getAttribute('camera').active;
-        console.log(setPrimaryCameraActive);
-        primaryCameraEl.setAttribute('camera','active', setPrimaryCameraActive);
-        console.log(primaryCameraEl.getAttribute('camera').active);
-
-        console.log("secondary camera");
-        var secondaryCameraEl = document.querySelector('#second-camera');
-        var setSecondaryCameraActive = !secondaryCameraEl.getAttribute('camera').active;
-        console.log(setSecondaryCameraActive);
-        secondaryCameraEl.setAttribute('camera', 'active', setSecondaryCameraActive);
-        console.log(secondaryCameraEl.getAttribute('camera').active);
-      }
-
-    </script>
-    
-    
-    <style>
-      body {
-          background-color: black;}
-      .btn-container   {
-          display:block;
-          position: fixed;
-      bottom: 1rem;
-      width: 100%;
-      }
-      .btn   {
-          display:flex;
-          height: 60px;
-          background-color: #f59e57;
-          padding-left: 20px;
-          padding-right: 20px;
-          margin:  0 auto;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          width: 300px;
-          }
-      .btn span{
-          font-family: 'Open Sans',Helvetica,Arial,Lucida,sans-serif;
-          font-weight: 800;
-          text-transform: uppercase;
-          font-size: 19px;
-          color: #000000;
-          transition: color 300ms ease 0ms;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          padding: 31px 0;
-          white-space: nowrap;
-          display: flex;
-          vertical-align: center;
-          
-      }   
-      .btn:hover span{
-          color: #EA5929!important;
-      } 
-      a{
-          text-decoration: none;
-      }
-      </style>
   </head>
  
   <body style='margin : 0px; overflow: hidden;'>
@@ -100,87 +13,19 @@
   <a-scene embedded arjs>
     <!-- AR Scene -->
     <a-assets>
-      <img id="texture_info" src="https://ymaaskant.github.io/docs/assets/images/logo_jaarevent_inno.png">
-      <img id="texture_wall_rear" src="https://ymaaskant.github.io/docs/assets/images/texture_wall_rear.png">
-      <img id="texture_wall_left" src="https://ymaaskant.github.io/docs/assets/images/texture_wall_left.png">
-      <img id="texture_wall_right" src="https://ymaaskant.github.io/docs/assets/images/texture_wall_right.png">
-      <img id="texture_wall_right_front" src="https://ymaaskant.github.io/docs/assets/images/texture_wall_right_front.png">
-      <img id="texture_floor" src="https://ymaaskant.github.io/docs/assets/images/texture_floor.png">
-      <img id="texture_ceiling" src="https://ymaaskant.github.io/docs/assets/images/texture_ceiling.png">
-      <img id="texture_bar" src="https://ymaaskant.github.io/docs/assets/images/texture_bar.png">
-      <img id="texture_tafel" src="https://ymaaskant.github.io/docs/assets/images/texture_tafel.png">
+      <img id="texture_JSP_Solid" src="https://ymaaskant.github.io/docs/assets/images/textures/JSp_v2_basecolor_no_labels.png">
 
-      <a-asset-item id="testBox" src="https://ymaaskant.github.io/docs/assets/models/HND_AR_InnovatieTafelLogo_Ani_Emissive.glb" ></a-asset-item>
-      <!-- <a-mixin id="text1" text="align: center; width: 6; value: Innovatie tafel;" ></a-mixin>
-      <a-mixin id="text2" text="align: center; width: 6; value: JAAREVENT;" ></a-mixin>
-      <a-mixin id="text3" text="align: center; width: 6; value: 26 Oktober 2023;" ></a-mixin>
-      <a-mixin id="text4" text="align: center; width: 6; value: Registreer je nu!;" ></a-mixin> -->
     </a-assets>
-
-    <!-- popuating Scene -->
-      <!-- <a-entity gltf-model="#testBox" scale="0.005 0.005 0.005" position="0 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-      <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 0.625 0.3" material="transparent: true; side: double;"></a-plane>
-      <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="0 -2 0" material="transparent: false; side: double;"></a-plane>
-      <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="0 1 1.5" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="0 1 -1.5" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="-2 1 0" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="2 1 0" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="" height="1" width="3" rotation="270 180 0" position="-1 1 0" material="color:red; transparent:false;side:single" ></a-plane>
-      <a-plane src="" height="1" width="3" rotation="270 180 0" position="-1 2 1" material="color:green; transparent:false;side:single" ></a-plane> -->
-
-      <!-- cameras -->
-    <!-- <a-marker-camera id="camera1" type="pattern" url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" size="0.15" emitevents="false" fov="110"> </a-marker-camera> -->
-
-    <a-entity id="sceneAR" visible="true">
-      <a-entity id="camera1" camera="active:true; fov:110;" position="0 0 0">
-        <a-marker id="marker" markerhandler preset='custom' type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt">
-          <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="0 -0.5 -0.3" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-          <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="0 -0.8 0.3" material="transparent: true; side: double;"></a-plane>
-          <a-plane src="#texture_wall_rear" height="1.5" width="2" rotation="270 180 0" position="0 -2 0" material=" transparent: false; side: double;"></a-plane>
-          <a-plane src="#texture_ceiling" height="3" width="2" rotation="0 0 0" position="0 -0.5 -0.75" material=" transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_floor" height="3" width="2" rotation="0 180 0" position="0 -0.5 0.75" material="transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_left" height="1.5" width="3" rotation="0 90 -90" position="-1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_right" height="1.5" width="3" rotation="0 -90 90" position="1 -0.5 0" material=" transparent: false; side: single;"></a-plane>
-          <a-plane src="#texture_wall_right_front" height="1.5" width="1.5" rotation="0 -90 90 " position = "0.75 0.25 0" material="transparant:false;side:single;"></a-plane>
-          <a-plane src="#texture_bar" height="0.6" width="1.4" rotation="270 0 0" position="-0.2 -1.6 0.3" material="transparent: true; side: double;"></a-plane>
-          <a-plane src="#texture_tafel" height="0.6" width="1" rotation="90 0 0 " position="0.375 -1 0.3" material="transparent: true; side: double;"></a-plane>
-          <a-plane height="1.5" width="0.25" position="0.875 1 0" rotation="90 0 0" material="color:black;side:double;"></a-plane>
-          <a-plane height="1.5" width="0.25" position="0.875 0.25 -0.75" material="color:black;side:double;"></a-plane>
-          </a-marker>
-      </a-entity>
-      <!-- <a-marker-camera type='pattern' url="https://ymaaskant.github.io/docs/assets/images/pattern-AR_MARKER_HND.patt" smoothing="true"></a-marker-camera> -->
-  </a-entity>
-
+   
+      
   <!-- 3D scene -->
-    <a-entity id="scene3D" visible="false">
+    <a-entity id="scene3D" visible="true">
     <!-- camera -->
     <a-entity id="cameraRig" position="100 2 0" rotation="-90 0 0">
       <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="0 0 0" look-controls="pointerLockEnabled:false"></a-entity>
     </a-entity>
-      <!-- objects -->
-      <a-entity gltf-model="#testBox" scale="0.010 0.010 0.010" position="100 0.7 0" rotation="0 0 0" animation-mixer="loop:repeat;"></a-entity>
-      <a-plane src="#texture_info" height="0.3" width="0.6" rotation="-90 0 0" position="100 0.625 0.3" material="transparent: true; side: double;"></a-plane>
-      <a-plane src="#texture_wall_rear" height="3" width="4" rotation="270 180 0" position="100 -2.5 0" material=";transparent: false; side: double;"></a-plane>
-      <a-plane src="#texture_floor" height="6" width="4" rotation="0 180 0" position="100 0.5 1.5" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_ceiling" height="6" width="4" rotation="0 0 0" position="100 0.5 -1.5" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_wall_left" height="3" width="6" rotation="0 90 -90" position="98 0.5 0" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="#texture_wall_right" height="3" width="6" rotation="0 -90 90" position="102 0.5 0" material="transparent: false; side: single;"></a-plane>
-      <a-plane src="" height="1" width="3" rotation="270 180 0" position="100 0 -2" material="color:red; transparent:false;side:single" ></a-plane>
-      <a-plane src="" height="0.8" width="2" rotation="270 180 0" position="100 0.4 -1.4" material="color:green; transparent:false;side:single" ></a-plane>
-    </a-entity>
+    <!-- Populating Scene -->
+    <a-plane src="#texture_JSP_Solid" height="1" width="1" rotation="270 0 0" position="0 0 0" material="transparent: true; side: double;"></a-plane>
    </a-scene>
-
-
- 
-  <div class="btn-container">
-    <button onclick = "swapCameras()" class ="btn"> Click Me </button>
-  </div>
-
-   <!-- <div class="btn-container">
-      <a href="https://hellonewday.nl" class="btn">
-          <span>Registreer hier!</span>
-      </a>
-    </div> -->
-
   </body>
 </html>
