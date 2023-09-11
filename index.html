@@ -1,31 +1,24 @@
-<!doctype HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <!-- <script src="https://ymaaskant.github.io/docs/assets/js/aframe-ar.js"></script> -->
-    <script src="https://ymaaskant.github.io/docs/assets/js/aframe-extras.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
- 
-  <body style='margin : 0px; overflow: hidden;'>
-
- 
-<!-- 3D environments -->
-  <a-scene embedded arjs>
-    <!-- AR Scene -->
-    <a-assets>
-      <img id="texture_JSP_Solid" src="../docs/assets/images/textures/JSp_v2_basecolor_no_labels.png">
-
-    </a-assets>
-   
-      
-  <!-- 3D scene -->
-    <a-entity id="scene3D" visible="true">
-    <!-- camera -->
-    <a-entity id="cameraRig" position="100 2 0" rotation="-90 0 0">
-      <a-entity id="second-camera" camera="active:false; fov:80;" position="0 0 0" rotation="0 0 0" look-controls="pointerLockEnabled:false"></a-entity>
-    </a-entity>
-    <!-- Populating Scene -->
-    <a-plane src="#texture_JSP_Solid" height="1" width="1" rotation="270 0 0" position="0 0 0" material="transparent: true; side: double;"></a-plane>
-   </a-scene>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img
+          id="texture_JSP_Solid"
+          src="https://ymaaskant.github.io/docs/assets/images/textures/JSp_v2_basecolor_no_labels.png"
+        />
+      </a-assets>
+      <a-plane
+        src="#texture_JSP_Solid"
+        height="10"
+        width="10"
+        rotation="270 0 0"
+        position="0 0 0"
+        material="transparent: true; side: double;"
+      ></a-plane>
+    </a-scene>
   </body>
 </html>
