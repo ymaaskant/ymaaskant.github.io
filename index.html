@@ -2,9 +2,109 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script>
+      
+      
+      const disableButton = () => {
+      button.disabled = true;
+      };
+
+      const boardSpot = [{x:1,y:1},{x:2,y:1},{x:3,y:1},{x:4,y:1},{x:5,y:1},{x:5,y:2},{x:4,y:2},{x:3,y:2},{x:2,y:2},{x:1,y:2},{x:1,y:3},{x:2,y:3},{x:3,y:3},{x:4,y:3},{x:5,y:3}];
+
+      var p1Spot=1;
+      var p2Spot=1;
+      var p1NewSpot = 0;
+      var p2NewSpot = 0;
+      var playerTurn = 1;
+      const finish=15;
+
+      const roll = () => {
+        var randomNumber = (Math.floor(Math.random() * 6) + 1);
+        console.log("rolled: " + randomNumber);
+        playerMove(playerTurn,randomNumber);
+        return randomNumber;
+      } 
+  
+      const animationTimer = ms => new Promise(res => setTimeout(res, ms))
+
+      async function playerMove (player,roll) {
+        if(player===1){
+          var player = document.querySelector('#player01');
+          var playerOldSpot = p1Spot;
+          var playerNewSpot = p1Spot + roll;
+          p1Spot = playerNewSpot;
+          playerTurn = 2;
+        } 
+        else if(player===2){
+          var player = document.querySelector('#player02');
+          var playerOldSpot = p2Spot;
+          var playerNewSpot = p2Spot + roll;
+          p2Spot=playerNewSpot;
+          playerTurn=1;
+        }
+
+        if(playerNewSpot > finish){
+          playerNewSpot=finish;
+          console.log("player wins");
+        }
+        for (var i = playerOldSpot; i < playerNewSpot ; i++) {
+          console.log("i" + i);
+          player.setAttribute('animation','to',{x: boardSpot[i].x, y: 0.25, z: boardSpot[i].y})
+          await animationTimer(600); // then the created Promise can be awaited
+        }
+        console.log("p1Spot: " + p1Spot + " p2Spot: " + p2Spot);
+
+      }
+    </script>
+
+<style>
+    body {
+      background-color: black;}
+  .btn-container   {
+      display:block;
+      position: fixed;
+  bottom: 1rem;
+  width: 100%;
+  }
+  .btn   {
+      display:flex;
+      height: 60px;
+      background-color: #1e6eb3;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin:  0 auto;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 300px;
+      }
+  .btn span{
+      font-family: 'Open Sans',Helvetica,Arial,Lucida,sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 19px;
+      color: #000000;
+      transition: color 300ms ease 0ms;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 31px 0;
+      white-space: nowrap;
+      display: flex;
+      vertical-align: center;
+      
+  }   
+  .btn:hover span{
+      color: #000000!important;
+  } 
+  a{
+      text-decoration: none;
+  }
+</style>
   </head>
   <body>
-    <a-scene effects="bloom, fxaa" bloom="radius:2" fxaa>
+    <a-scene effects="bloom, fxaa" bloom="radius:2" fxaa height="1200px">
+      <!-- assets -->
       <a-assets>
         <img id="texture_jsp_solid" src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_basecolor.png"/>
         <img id="texture_jsp_AO" src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_ambientocclusion.png"/>
@@ -12,16 +112,61 @@
         <img id="texture_jsp_rough" src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_roughness.png"/>
         <img id="texture_jsp_normal" src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_normal.png"/>
         <img id="texture_jsp_metallic" src="https://ymaaskant.github.io/docs/assets/images/Textures/JSp_v2_metallic.png"/>
+        <img id="board_5x5" src="https://ymaaskant.github.io/docs/assets/images/Textures/5x5.png"/>
 
+
+        <!-- <a-plane
+          id="SciFi_Panel_01"
+          height="4"
+          width="4"
+          rotation="0 0 0"
+          position="0 2 -4"
+          material="src:#texture_jsp_solid; ambientOcclusionMap: #texture_jsp_AO; displacementMap: #texture_jsp_height; normalMap:#texture_jsp_normal; roughnessMap: #texture_jsp_roughness; metalnessMap:#texture_jsp_metallic; side:double;"
+        ></a-plane> -->
       </a-assets>
-      <a-plane
-        
-        height="4"
-        width="4"
-        rotation="0 0 0"
-        position="0 2 -4"
-        material="src:#texture_jsp_solid; ambientOcclusionMap: #texture_jsp_AO; displacementMap: #texture_jsp_height; normalMap:#texture_jsp_normal; roughnessMap: #texture_jsp_roughness; metalnessMap:#texture_jsp_metallic; side:double;"
-      ></a-plane>
+
+      <!-- scene population -->
+      
+      <a-sky color="#87CEEB"></a-sky>
+      <a-plane src="#board_5x5" scale="5 5 1" position="2.5 0 2.5" rotation="-90 0 0 "></a-plane>
+
+      <a-entity id="player01" position="1 0.25 1"  animation="property:position; loop: 1; dir:normal; dur:500;">
+        <a-cone radius-bottom="0.25" radius-top="0.05" height="0.5"  position ="-0.25 0 -0.25" color="black"></a-cone>
+        <a-sphere radius="0.15" position="-0.25 0.3 -0.25" color="black"></a-sphere>
+      </a-entity>
+
+      <a-entity id="player02"  position="1 0.25 1"  animation="property:position; loop: 1; dir:normal; dur:500;">
+        <a-cone radius-bottom="0.25" radius-top="0.05" height="0.5" position = "0.25 0 0.25" color="white"></a-cone>
+        <a-sphere radius="0.15" position="0.25 0.3 0.25" color="white"></a-sphere>
+      </a-entity>
+      <!-- rotatingboxes -->
+      <!-- <a-box  color="green" position="0 4 0" animation="property:rotation; to:0 360 0; loop:3; dur:2500; easing:linear;">
+      </a-box>
+      <a-entity position="0 4 0" animation="property:rotation; to:0 -360 0; loop:3; dur:2500; easing:linear;">
+        <a-box color="yellow" position="2 0 0" animation="property:rotation; to:0 -360 0; loop: 3; dur:2500; easing:linear;">
+        </a-box>
+      </a-entity> -->
+
+
+      <!-- <a-box color="cyan" animation="property:position; from: -2  0.5 -2; to:2 0.5 2; loop: 1; dir:normal; dur:2500;">
+
+      </a-box> -->
+
+      <!-- camera -->
+      <a-entity id="cameraRig" position="2.5 1.6 7.5" rotation="-9 0 0">
+        <a-camera id="camera01" active="true" wasd-controls.enabled="true" position="0 0 0" fov="80"></a-camera>
+      </a-entity>
+
+      
     </a-scene>
+    <div class="btn-container">
+      <button id="button" class="btn" onclick="roll()">
+          <span>Roll</span>
+      </button>
+    </div>
   </body>
+
 </html>
+
+
+<!-- npm i -g five-server@latest && five-server --port=8000 -->
