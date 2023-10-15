@@ -64,12 +64,18 @@
           var player = document.querySelector("#player01");
           var playerOldSpot = p1Spot;
           var playerNewSpot = p1Spot + roll;
+          if(playerNewSpot === p2Spot){
+            playerNewSpot++;
+          }
           p1Spot = playerNewSpot;
           playerTurn = 2;
         } else if (player === 2) {
           var player = document.querySelector("#player02");
           var playerOldSpot = p2Spot;
           var playerNewSpot = p2Spot + roll;
+          if(playerNewSpot === p1Spot){
+            playerNewSpot++;
+          }
           p2Spot = playerNewSpot;
           playerTurn = 1;
         }
@@ -100,6 +106,34 @@
           y: boardSpot[playerNewSpot].z,
           z: boardSpot[playerNewSpot].y
         });
+
+        if(boardSpot[playerNewSpot].type === "trap"){
+          var randomNumber = Math.floor(Math.random() * 4) + 1;
+          console.log(randomNumber);
+          if (randomNumber === 1 ){
+
+            var resetSpot = 3  
+            
+            player.setAttribute("animation","to",{
+              x:boardSpot[playerNewSpot].x,
+              y:boardSpot[resetSpot].z + 0.5,
+              z: boardSpot[playerNewSpot].y
+            });
+            await animationTimer(600);
+            player.setAttribute("animation","to",{
+              x:boardSpot[resetSpot].x,
+              y:boardSpot[resetSpot].z + 0.5,
+              z: boardSpot[resetSpot].y
+            });
+            await animationTimer(600);
+            player.setAttribute("animation","to",{
+              x:boardSpot[resetSpot].x,
+              y:boardSpot[resetSpot].z,
+              z: boardSpot[resetSpot].y
+            });
+            await animationTimer(600);
+          }
+        }
 
 
         console.log("p1Spot: " + p1Spot + " p2Spot: " + p2Spot);
