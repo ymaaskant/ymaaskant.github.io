@@ -2,144 +2,8 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-
-    <script>
-      const disableButton = () => {
-        const button = document.querySelector("#buttonRoll");
-        button.disabled = true;
-      };
-
-      const enableButton = () => {
-        const button = document.querySelector("#buttonRoll");
-        button.disabled = false;
-      };
-
-      const boardSpot = [
-        { x: -1, y: 1, z: 3, type:"start"},
-        { x: -0.125, y: 1.05, z: 3, type:"green"},
-        { x: 0.33, y: 1, z: 3, type:"green"},
-        { x: 0.75, y: 0.666, z: 3, type:"reset"},
-        { x: 0.75, y: 0.25, z: 2.2, type:"trap"},
-        { x: 1.25, y: 0.25, z: 1.875, type:"trap"},
-        { x: 1.75, y: 0.25, z: 1.55, type:"trap"},
-        { x: 2.25, y: 0.25, z: 1.2, type:"trap"},
-        { x: 2.75, y: 0.25, z: 0.85, type:"trap"},
-        { x: 3.5, y: 0.25, z: 0.35, type:"trap"},
-        { x: 3.2, y: 0.9, z: 0, type:"green"},
-        { x: 3.18, y: 1.4, z: 0, type:"green"},
-        { x: 2.85, y: 1.75, z: 0, type:"green"},
-        { x: 2.45, y: 1.7, z: 0, type:"yellow"},
-        { x: 1.6, y: 1.65, z: 0, type:"green"},
-        { x: 1.5, y: 1.65, z: 0, type:"green"},
-        { x: 1.1, y: 1.8, z: 0, type:"yellow"},
-        { x: 0.73, y: 2, z: 0, type:"green"},
-        { x: 0.2, y: 2, z: 0, type:"green"},
-        { x: -0.3, y: 2, z: 0, type:"reset"},
-        { x: -0.78, y: 1.7, z: 0, type:"green"},
-        { x: -0.9, y: 1.25, z: 0, type:"green"},
-      ];
-
-      var p1Spot = 0;
-      var p2Spot = 0;
-      var p1NewSpot = 0;
-      var p2NewSpot = 0;
-      var playerTurn = 1;
-      const finish = 25;
-
-      const roll = () => {
-        disableButton();
-        var randomNumber = Math.floor(Math.random() * 6) + 1;
-        console.log("rolled: " + randomNumber);
-        playerMove(playerTurn, randomNumber);
-        return randomNumber;
-      };
-
-      const animationTimer = (ms) => new Promise((res) => setTimeout(res, ms));
-
-
-
-
-      async function playerMove(player, roll) {
-        if (player === 1) {
-          var player = document.querySelector("#player01");
-          var playerOldSpot = p1Spot;
-          var playerNewSpot = p1Spot + roll;
-          if(playerNewSpot === p2Spot){
-            playerNewSpot++;
-          }
-          p1Spot = playerNewSpot;
-          playerTurn = 2;
-        } else if (player === 2) {
-          var player = document.querySelector("#player02");
-          var playerOldSpot = p2Spot;
-          var playerNewSpot = p2Spot + roll;
-          if(playerNewSpot === p1Spot){
-            playerNewSpot++;
-          }
-          p2Spot = playerNewSpot;
-          playerTurn = 1;
-        }
-
-        if (playerNewSpot > finish) {
-          playerNewSpot = finish;
-          console.log("player wins");
-        }
-
-        player.setAttribute("animation","to",{
-          x:boardSpot[playerOldSpot].x,
-          y:boardSpot[playerOldSpot].z + 0.5,
-          z: boardSpot[playerOldSpot].y
-        });
-
-
-        for (var i = playerOldSpot; i < playerNewSpot+1; i++) {
-          await animationTimer(600);
-          player.setAttribute("animation", "to", {
-            x: boardSpot[i].x,
-            y: boardSpot[i].z + 0.5,
-            z: boardSpot[i].y,
-          });
-        }
-        await animationTimer(600);
-        player.setAttribute("animation","to",{
-          x: boardSpot[playerNewSpot].x,
-          y: boardSpot[playerNewSpot].z,
-          z: boardSpot[playerNewSpot].y
-        });
-
-        if(boardSpot[playerNewSpot].type === "trap"){
-          var randomNumber = Math.floor(Math.random() * 4) + 1;
-          console.log(randomNumber);
-          if (randomNumber === 1 ){
-
-            var resetSpot = 3  
-            
-            player.setAttribute("animation","to",{
-              x:boardSpot[playerNewSpot].x,
-              y:boardSpot[resetSpot].z + 0.5,
-              z: boardSpot[playerNewSpot].y
-            });
-            await animationTimer(600);
-            player.setAttribute("animation","to",{
-              x:boardSpot[resetSpot].x,
-              y:boardSpot[resetSpot].z + 0.5,
-              z: boardSpot[resetSpot].y
-            });
-            await animationTimer(600);
-            player.setAttribute("animation","to",{
-              x:boardSpot[resetSpot].x,
-              y:boardSpot[resetSpot].z,
-              z: boardSpot[resetSpot].y
-            });
-            await animationTimer(600);
-          }
-        }
-
-
-        console.log("p1Spot: " + p1Spot + " p2Spot: " + p2Spot);
-        enableButton();
-      }
-    </script>
+    <script src="/docs/assets/js/game.js"></script>
+    <script window.onload=function(){startGame(8);};></script>
 
     <style>
       body {
@@ -229,15 +93,45 @@
 
         <!-- Player Models -->    
       <a-entity
-        id="player01" position="-1 3 1" animation="property:position; loop: 1; dir:normal; dur:500;">
+        id="player01" position="-1 3 0.5" animation="property:position; loop: 1; dir:normal; dur:500; easing:easeInCubic">
         <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="blue"></a-cone>
         <a-plane src="#tx_p_b_1" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
       </a-entity>
 
-      <a-entity id="player02" position="-1 3 0.5" animation="property:position; loop: 1; dir:normal; dur:500;">
+      <a-entity id="player02" position="-1 3 0.7" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
+        <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="blue"></a-cone>
+        <a-plane src="#tx_p_b_2" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+      </a-entity>
+
+      <a-entity id="player03" position="-1 3 0.9" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
         <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="purple"></a-cone>
         <a-plane src="#tx_p_p_1" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
       </a-entity>
+
+      <a-entity id="player04" position="-1 3 1.1" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
+        <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="purple"></a-cone>
+        <a-plane src="#tx_p_p_2" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+      </a-entity>
+      <a-entity
+      id="player05" position="-1 3 1.3" animation="property:position; loop: 1; dir:normal; dur:500; easing:easeInCubic">
+      <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="green"></a-cone>
+      <a-plane src="#tx_p_g_1" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+    </a-entity>
+
+    <a-entity id="player06" position="-1 3 1.5" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
+      <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="green"></a-cone>
+      <a-plane src="#tx_p_g_2" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+    </a-entity>
+
+    <a-entity id="player07" position="-1 3 1.7" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
+      <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="yellow"></a-cone>
+      <a-plane src="#tx_p_y_1" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+    </a-entity>
+
+    <a-entity id="player08" position="-1 3 0" animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic">
+      <a-cone radius-bottom="0.2" radius-top="0.15" height="0.2" position="0 0.1 0" color="yellow"></a-cone>
+      <a-plane src="#tx_p_y_2" scale="0.5 1.2 1" position="0 0.6 0" material="transparent:true"></a-plane>
+    </a-entity>
 
       <!-- game board -->
       <a-entity id="board" position="0 0 0" rotation="0 180 0">
@@ -262,7 +156,7 @@
 
 
       <!-- camera -->
-      <a-entity id="cameraRig" position="0 4 8" rotation="0 0 0">
+      <a-entity id="cameraRig" position="5 5 9" rotation="-15 30 0" animation="property:position; loop:1; dir:normal; dur:500;">
         <a-camera
           id="camera01"
           active="true"
@@ -273,10 +167,15 @@
         ></a-camera>
       </a-entity>
     </a-scene>
+
+
     <div class="btn-container">
-      <button id="buttonRoll" class="btn" onclick="roll()">
+      <button id="buttonRoll" class="btn" onclick="game()">
         <span>Roll</span>
       </button>
+      <!-- <button id="buttonStart" class="btn" onclick="startGame(8)">
+        <span>Start</span>
+      </button> -->
     </div>
   </body>
 </html>
