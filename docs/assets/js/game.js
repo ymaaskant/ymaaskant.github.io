@@ -63,18 +63,19 @@ const dice = [
 ];
 
 const game = () => {
+// Initialize
   if(gameStarted === false){
     startGame(8);
     console.log(players);
     gameStarted=true;
   }
 
-  disableButton();
-
   // roll
+  disableButton();
   var playerRoll=roll();
-  playerMove2(playerTurn-1, playerRoll);
-  console.log("player moved to : " + players[playerTurn-1].position);
+  var playerPosition = calcPos(playerTurn-1,playerRoll)
+  playerMove(playerTurn-1, playerPosition);
+
 
   // Next Turn
   if (playerTurn >= nPlayers){
@@ -96,21 +97,26 @@ const roll = () => {
   return randomNumber;
 };
 
+const calcPos = (playerId,roll) => {
+  var playerNewPosition = players[playerId].position + roll;
+  console.log(playerNewPosition);
+  for (var i = 0; i < nPlayers; i++){
+    if(i === playerId){
+      console.log(i);
+      continue;
+    }
+    if(players[i].position === playerNewPosition){
+      playerNewPosition++;
+      i=0;
+    }
+  }
+  return (playerNewPosition);
+};
+
 const animationTimer = (ms) => new Promise((res) => setTimeout(res, ms));
 
-async function playerMove2(playerId,roll){
+async function playerMove(playerId,playerNewPosition){
   var player = document.querySelector(players[playerId].selector);
-  var playerNewPosition = players[playerId].position + roll;
-
-  for (var i = 0; i > nPlayers; i++){
-    
-      if(players[i].position === playerNewPosition){
-        
-        console.log("occupied");
-      }
-    
-  }
-  console.log(playerNewPosition);
 
 // Movement animation
 // lift
@@ -137,91 +143,3 @@ async function playerMove2(playerId,roll){
   });
   players[playerId].position=playerNewPosition;
 };
-
-// async function playerMove(player, roll) {
-//   var playerPosition = player[player].position;
-  
-//   if (player === 1) {
-//     var player = document.querySelector("#player01");
-//     var playerOldSpot = p1Spot;
-//     var playerNewSpot = p1Spot + roll;
-//     if(playerNewSpot === p2Spot){
-//       playerNewSpot++;
-//     }
-//     p1Spot = playerNewSpot;
-//     playerTurn = 2;
-//   } else if (player === 2) {
-//     var player = document.querySelector("#player02");
-//     var playerOldSpot = p2Spot;
-//     var playerNewSpot = p2Spot + roll;
-//     if(playerNewSpot === p1Spot){
-//       playerNewSpot++;
-//     }
-//     p2Spot = playerNewSpot;
-//     playerTurn = 1;
-//   }
-
-//   if (playerNewSpot > finish) {
-//     playerNewSpot = finish;
-//     console.log("player wins");
-//   }
-
-//   player.setAttribute("animation","to",{
-//     x:boardSpot[playerOldSpot].x,
-//     y:boardSpot[playerOldSpot].z + 0.5,
-//     z: boardSpot[playerOldSpot].y
-//   });
-
-
-//   for (var i = playerOldSpot; i < playerNewSpot+1; i++) {
-//     await animationTimer(600);
-//     player.setAttribute("animation", "to", {
-//       x: boardSpot[i].x,
-//       y: boardSpot[i].z + 0.5,
-//       z: boardSpot[i].y,
-//     });
-//   }
-//   await animationTimer(500);
-//   player.setAttribute("animation","to",{
-//     x: boardSpot[playerNewSpot].x,
-//     y: boardSpot[playerNewSpot].z,
-//     z: boardSpot[playerNewSpot].y
-//   });
-
-//   if(boardSpot[playerNewSpot].type === "trap"){
-    
-//       if (trapActivation() = 1){
-//       var resetSpot = 3  
-      
-//       player.setAttribute("animation","to",{
-//         x:boardSpot[playerNewSpot].x,
-//         y:boardSpot[resetSpot].z + 0.5,
-//         z: boardSpot[playerNewSpot].y
-//       });
-//       await animationTimer(600);
-//       player.setAttribute("animation","to",{
-//         x:boardSpot[resetSpot].x,
-//         y:boardSpot[resetSpot].z + 0.5,
-//         z: boardSpot[resetSpot].y
-//       });
-//       await animationTimer(600);
-//       player.setAttribute("animation","to",{
-//         x:boardSpot[resetSpot].x,
-//         y:boardSpot[resetSpot].z,
-//         z: boardSpot[resetSpot].y
-//       });
-//       await animationTimer(600);
-//       // correct position
-//       // if(playerTurn=1){
-//       //   p2Spot=resetSpot;
-//       // }
-//       // if(playerTurn=2){
-//       //   p1Spot=resetSpot;
-//       // }
-//     }
-//   }
-
-
-//   console.log("p1Spot: " + p1Spot + " p2Spot: " + p2Spot);
-//   enableButton();
-// };
