@@ -1,7 +1,7 @@
 var gameStarted = false;
 var playerTurn = 1;
 var players =  [];
-var nPlayers = 8;
+var nPlayers = 2;
 var settingAnimationSpeed = 500;
 
 // Board 
@@ -101,6 +101,7 @@ const game = () => {
   if(gameStarted === false){
     startGame(8);
     // console.log(players);
+    console.log(boardSpot.length);
     gameStarted=true;
   }
 
@@ -127,6 +128,7 @@ const trapActivation = () =>{
   switch (randomNumber){
     case 1:
       console.log("trap 1 activated");
+      trapAnimation(1);
       for (let i = 0; i < nPlayers;i++){
         if (players[i].position > 3 && players[i].position <10){
           console.log(players[i].name + " is reset to spot 3");
@@ -174,6 +176,11 @@ const roll = () => {
 
 const calcPos = (playerId,roll) => {
   var playerNewPosition = players[playerId].position + roll;
+  if (playerNewPosition >= boardSpot.length){
+    console.log("player position > board spots. Player will not land on finish");
+    playerNewPosition = players[playerId].position;
+    return(playerNewPosition);
+  }
   // console.log("playerNewPosition in calcPos: " + playerNewPosition);
   for (var i = 0; i < nPlayers; i++){
     if(i === playerId){
@@ -189,7 +196,36 @@ const calcPos = (playerId,roll) => {
 
 const animationTimer = (ms) => new Promise((res) => setTimeout(res, ms));
 
-async function playerReset(resetSpot){
+async function trapAnimation(trap){
+  switch (trap) {
+    case 1:
+      var ball = document.querySelector("trapball01");
+      break;
+    case 2:
+      var ball = document.querySelector("trapBall02");
+      break;  
+    case 3:
+      var ball = document.querySelector("trapBall03");
+      break;  
+    case 4:
+      var ball = document.querySelector("trapBall04");
+      break;  
+  }
+  
+for (let i=0;i<trapCoords1.length;i++){
+  ball.setAttribute("animation","to",{
+    x:trapCoords1[i].x,
+    y:trapCoords1[i].y,
+    z:trapCoords1[i].z
+  }) 
+}
+
+const trapCoords1 = [
+  { x: 0.375, y: 2.5, z: 0.2, easing:""},
+  { x: 0.6, y: 2.3, z: 0.2, easing:""},
+  { x: 1.1, y: 2.3, z: 0.2, easing:""},
+  { x: 1.1, y: 2, z: 0.2, easing:""},
+];
 
 };
 
