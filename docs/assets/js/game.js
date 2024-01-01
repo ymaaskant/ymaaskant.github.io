@@ -1,8 +1,9 @@
 var gameStarted = false;
 var playerTurn = 1;
 var players =  [];
-var nPlayers = 2;
+var nPlayers = 8;
 var settingAnimationSpeed = 500;
+
 
 // Board 
 const boardSpot = [
@@ -105,6 +106,8 @@ const game = () => {
     gameStarted=true;
   }
 
+
+
   // roll
   disableButton();
   var playerRoll = roll();
@@ -122,6 +125,9 @@ default:
   playerTurnHandler();
   enableButton();
 };
+
+//animation timer promise
+const animationTimer = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const trapActivation = () =>{
   var randomNumber = Math.floor(Math.random() * 4) + 1;
@@ -183,23 +189,58 @@ const calcPos = (playerId,roll) => {
   }
   // console.log("playerNewPosition in calcPos: " + playerNewPosition);
   for (var i = 0; i < nPlayers; i++){
+    console.log("checking pos, current i: " + i);
     if(i === playerId){
+      //
+      console.log("player i");
       continue;
     }
     if(players[i].position === playerNewPosition){
       playerNewPosition++;
+      console.log("changed player pos to: " + playerNewPosition);
       i=0;
+      console.log("check if i reset: " + i);
     }
   }
   return (playerNewPosition);
 };
 
-const animationTimer = (ms) => new Promise((res) => setTimeout(res, ms));
+
+
+
+const trapCoords1 = [
+        { x: 0.375, y: 2.5, z: 0.2, easing:""},
+        { x: 0.6, y: 2.3, z: 0.2, easing:""},
+        { x: 1.1, y: 2.3, z: 0.2, easing:""},
+        { x: 1.1, y: 2, z: 0.2, easing:""},
+        { x: 1.61, y: 2, z: 0.2, easing:""},
+        { x: 1.61, y: 1.64, z: 0.2, easing:""},
+        { x: 2.08, y: 1.64, z: 0.2, easing:""},
+        { x: 2.08, y: 1.28, z: 0.2, easing:""},
+        { x: 2.6, y: 1.28, z: 0.2, easing:""},
+        { x: 2.6, y: 0.93, z: 0.2, easing:""},
+        { x: 3.09, y: 0.93, z: 0.2, easing:""},
+        { x: 3.09, y: 0.45, z: 0.2, easing:""},
+        { x: 4.2, y: 0.45, z: 0.2, easing:""},
+        { x: 4.2, y: -2, z: 0.2, easing:""}
+      ];  
 
 async function trapAnimation(trap){
+  let ballSpeed = 200;
   switch (trap) {
     case 1:
-      var ball = document.querySelector("trapball01");
+      var trapBall = document.querySelector("#trapBall01");
+      trapBall.setAttribute("animation","dur",ballSpeed);
+      // console.log("in switch case 1");
+      // console.log("trapBall var: " + trapBall);
+      for (var i=0; i<trapCoords1.length; i++){
+        trapBall.setAttribute("animation","to",{
+          x:trapCoords1[i].x,
+          y:trapCoords1[i].y,
+          z:trapCoords1[i].z
+        }); 
+        await animationTimer(ballSpeed);
+      }
       break;
     case 2:
       var ball = document.querySelector("trapBall02");
@@ -210,24 +251,9 @@ async function trapAnimation(trap){
     case 4:
       var ball = document.querySelector("trapBall04");
       break;  
-  }
-  
-for (let i=0;i<trapCoords1.length;i++){
-  ball.setAttribute("animation","to",{
-    x:trapCoords1[i].x,
-    y:trapCoords1[i].y,
-    z:trapCoords1[i].z
-  }) 
+  }    
 }
-
-const trapCoords1 = [
-  { x: 0.375, y: 2.5, z: 0.2, easing:""},
-  { x: 0.6, y: 2.3, z: 0.2, easing:""},
-  { x: 1.1, y: 2.3, z: 0.2, easing:""},
-  { x: 1.1, y: 2, z: 0.2, easing:""},
-];
-
-};
+  
 
 async function playerMove(playerId,playerNewPosition){
   if(!playerNewPosition === players[playerId].position){
@@ -254,11 +280,11 @@ async function playerMove(playerId,playerNewPosition){
   }
   // Drop
   await animationTimer(settingAnimationSpeed + 100);
-  player.setAttribute("animation","to",{
-    x: boardSpot[playerNewPosition].x,
-    y: boardSpot[playerNewPosition].z,
-    z: boardSpot[playerNewPosition].y
-  });
+    player.setAttribute("animation","to",{
+      x: boardSpot[playerNewPosition].x,
+      y: boardSpot[playerNewPosition].z,
+      z: boardSpot[playerNewPosition].y
+    });
   players[playerId].position=playerNewPosition;
 
   console.log("playerNewPosition in playermove(): " + playerNewPosition);
