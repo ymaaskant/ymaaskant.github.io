@@ -4,7 +4,6 @@ var players =  [];
 var nPlayers = 8;
 var settingAnimationSpeed = 500;
 
-
 // Board 
 const boardSpot = [
   { x: -1, y: 1, z: 3, type:"start"},
@@ -57,6 +56,23 @@ const boardSpot = [
   {x:3.45, y:-1.77, z:0, type:"green"},
   {x:3.93, y:-2, z:0, type:"finish"},
 ];
+
+const trapCoords1 = [
+  { x: 0.375, y: 2.5, z: 0.2, easing:""},
+  { x: 0.6, y: 2.3, z: 0.2, easing:""},
+  { x: 1.1, y: 2.3, z: 0.2, easing:""},
+  { x: 1.1, y: 2, z: 0.2, easing:""},
+  { x: 1.61, y: 2, z: 0.2, easing:""},
+  { x: 1.61, y: 1.64, z: 0.2, easing:""},
+  { x: 2.08, y: 1.64, z: 0.2, easing:""},
+  { x: 2.08, y: 1.28, z: 0.2, easing:""},
+  { x: 2.6, y: 1.28, z: 0.2, easing:""},
+  { x: 2.6, y: 0.93, z: 0.2, easing:""},
+  { x: 3.09, y: 0.93, z: 0.2, easing:""},
+  { x: 3.09, y: 0.45, z: 0.2, easing:""},
+  { x: 4.2, y: 0.45, z: 0.2, easing:""},
+  { x: 4.2, y: -2, z: 0.2, easing:""}
+];  
 
 const dice = [
   1,1,2,3,4,0
@@ -208,22 +224,7 @@ const calcPos = (playerId,roll) => {
 
 
 
-const trapCoords1 = [
-        { x: 0.375, y: 2.5, z: 0.2, easing:""},
-        { x: 0.6, y: 2.3, z: 0.2, easing:""},
-        { x: 1.1, y: 2.3, z: 0.2, easing:""},
-        { x: 1.1, y: 2, z: 0.2, easing:""},
-        { x: 1.61, y: 2, z: 0.2, easing:""},
-        { x: 1.61, y: 1.64, z: 0.2, easing:""},
-        { x: 2.08, y: 1.64, z: 0.2, easing:""},
-        { x: 2.08, y: 1.28, z: 0.2, easing:""},
-        { x: 2.6, y: 1.28, z: 0.2, easing:""},
-        { x: 2.6, y: 0.93, z: 0.2, easing:""},
-        { x: 3.09, y: 0.93, z: 0.2, easing:""},
-        { x: 3.09, y: 0.45, z: 0.2, easing:""},
-        { x: 4.2, y: 0.45, z: 0.2, easing:""},
-        { x: 4.2, y: -2, z: 0.2, easing:""}
-      ];  
+
 
 async function trapAnimation(trap){
   let ballSpeed = 200;
@@ -231,6 +232,7 @@ async function trapAnimation(trap){
     case 1:
       var trapBall = document.querySelector("#trapBall01");
       trapBall.setAttribute("animation","dur",ballSpeed);
+    
       // console.log("in switch case 1");
       // console.log("trapBall var: " + trapBall);
       for (var i=0; i<trapCoords1.length; i++){
