@@ -123,7 +123,6 @@ const game = () => {
   }
 
 
-
   // roll
   disableButton();
   var playerRoll = roll();
@@ -160,6 +159,7 @@ const trapActivation = () =>{
       break;
   case 2:
     console.log("trap 2 activated");
+    trapAnimation(2);
     for (let i = 0; i < nPlayers;i++){
       if (players[i].position >= 22 && players[i].position <= 26){
         console.log(players[i].name + " is reset to spot 3");
@@ -222,18 +222,13 @@ const calcPos = (playerId,roll) => {
 };
 
 
-
-
-
-
 async function trapAnimation(trap){
   let ballSpeed = 200;
   switch (trap) {
     case 1:
       var trapBall = document.querySelector("#trapBall01");
       trapBall.setAttribute("animation","dur",ballSpeed);
-    
-      // console.log("in switch case 1");
+          // console.log("in switch case 1");
       // console.log("trapBall var: " + trapBall);
       for (var i=0; i<trapCoords1.length; i++){
         trapBall.setAttribute("animation","to",{
@@ -245,13 +240,22 @@ async function trapAnimation(trap){
       }
       break;
     case 2:
-      var ball = document.querySelector("trapBall02");
+      var trapBall = document.querySelector("#trapBall02");
+      // trapBall.setAttribute("animation","dur",ballSpeed);
+      // for(var i=0; i<trapCoords2.length; i++){
+      //   trapBall.setAttribute("animation","to",{
+      //     x:trapCoords2[i].x,
+      //     y:trapCoords2[i].y,
+      //     z:trapCoords2[i].z
+      //   });
+      //   await animationTimer(ballSpeed);
+      // }
       break;  
     case 3:
-      var ball = document.querySelector("trapBall03");
+      var trapBall = document.querySelector("#trapBall03");
       break;  
     case 4:
-      var ball = document.querySelector("trapBall04");
+      var trapBall = document.querySelector("#trapBall04");
       break;  
   }    
 }

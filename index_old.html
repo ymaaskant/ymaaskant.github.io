@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="/docs/assets/js/game.js"></script>
+    <script window.onload="function(){startGame(8);};"></script>
+
+    <style>
+      body {
+        background-color: black;
+      }
+      .btn-container {
+        display: block;
+        position: fixed;
+        bottom: 1rem;
+        width: 100%;
+      }
+      .btn {
+        display: flex;
+        height: 60px;
+        background-color: #1e6eb3;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 0 auto;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 300px;
+      }
+      .btn span {
+        font-family: "Open Sans", Helvetica, Arial, Lucida, sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 19px;
+        color: #000000;
+        transition: color 300ms ease 0ms;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 31px 0;
+        white-space: nowrap;
+        display: flex;
+        vertical-align: center;
+      }
+      .btn:hover span {
+        color: #000000 !important;
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene effects="bloom, fxaa" bloom="radius:4" fxaa height="1200px">
+      <!-- assets -->
+      <a-assets>
+        <img
+          id="board_5x5"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/5x5.png"
+        />
+        <img
+          id="tx_p_b_1"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_b1.png"
+        />
+        <img
+          id="tx_p_b_2"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_b2.png"
+        />
+        <img
+          id="tx_p_g_1"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_g1.png"
+        />
+        <img
+          id="tx_p_g_2"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_g2.png"
+        />
+        <img
+          id="tx_p_y_1"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_y1.png"
+        />
+        <img
+          id="tx_p_y_2"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_y2.png"
+        />
+        <img
+          id="tx_p_p_1"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_p1.png"
+        />
+        <img
+          id="tx_p_p_2"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_c_p2.png"
+        />
+
+        <img
+          id="tx_board_base"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_board_base.png"
+        />
+        <img
+          id="tx_board_top"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_board_top.png"
+        />
+        <img
+          id="tx_wall1_g_y"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_w1_green_yellow.png"
+        />
+        <img
+          id="tx_wall1_b_p"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_w1_blue_pink.png"
+        />
+        <img
+          id="tx_wall2_g_p"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_w2_green_pink.png"
+        />
+        <img
+          id="tx_wall2_y_b"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_w2_yellow_blue.png"
+        />
+        <img
+          id="tx_tower_1"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_tower_1.png"
+        />
+        <img
+          id="tx_tower_2"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_tower_2.png"
+        />
+        <img
+          id="tx_tower_3"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_tower_3.png"
+        />
+        <img
+          id="tx_stairs"
+          src="https://ymaaskant.github.io/docs/assets/images/Textures/texture_stairs.png"
+        />
+
+        <!-- <a-plane
+          id="SciFi_Panel_01"
+          height="4"
+          width="4"
+          rotation="0 0 0"
+          position="0 2 -4"
+          material="src:#texture_jsp_solid; ambientOcclusionMap: #texture_jsp_AO; displacementMap: #texture_jsp_height; normalMap:#texture_jsp_normal; roughnessMap: #texture_jsp_roughness; metalnessMap:#texture_jsp_metallic; side:double;"
+        ></a-plane> -->
+      </a-assets>
+
+      <!-- scene population -->
+      <!-- environment -->
+      <a-sky color="#131d2c"></a-sky>
+
+      <!-- Player Models -->
+      <a-entity
+        id="player01"
+        position="-1 3 0.5"
+        animation="property:position; loop: 1; dir:normal; dur:500; easing:easeInCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="blue"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_b_1"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player02"
+        position="-1 3 0.7"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="blue"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_b_2"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player03"
+        position="-1 3 0.9"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="purple"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_p_1"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player04"
+        position="-1 3 1.1"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="purple"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_p_2"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+      <a-entity
+        id="player05"
+        position="-1 3 1.3"
+        animation="property:position; loop: 1; dir:normal; dur:500; easing:easeInCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="green"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_g_1"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player06"
+        position="-1 3 1.5"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="green"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_g_2"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player07"
+        position="-1 3 1.7"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="yellow"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_y_1"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+
+      <a-entity
+        id="player08"
+        position="-1 3 0"
+        animation="property:position; loop: 1; dir:normal; dur:500;easing:easeOutCubic"
+      >
+        <a-cone
+          radius-bottom="0.2"
+          radius-top="0.15"
+          height="0.2"
+          position="0 0.1 0"
+          color="yellow"
+        ></a-cone>
+        <a-plane
+          src="#tx_p_y_2"
+          scale="0.5 1.2 1"
+          position="0 0.6 0"
+          material="transparent:true"
+        ></a-plane>
+      </a-entity>
+      <!-- environment -->
+      <a-sky color="#131d2c"></a-sky>
+      <!-- game board -->
+      <a-entity id="board" position="0 0 0" rotation="0 180 0">
+        <a-plane
+          src="#tx_board_base"
+          scale="8.2 5 1"
+          position="0 0 0"
+          rotation="-90 0 0 "
+        ></a-plane>
+        <a-plane
+          src="#tx_wall1_g_y"
+          scale="9 3 1"
+          position="0 1.5 0"
+          rotation="0 180 0"
+          material="transparent: true"
+        ></a-plane>
+        <a-plane
+          src="#tx_stairs"
+          scale="3.5 3.5 1"
+          position="-1.275 1.75 -0.5"
+          rotation="0 180 0"
+          material="transparent:true"
+        ></a-plane>
+        <a-plane
+          src="#tx_wall1_b_p"
+          scale="-9 3 1"
+          position="0 1.5 0"
+          rotation="0 0 0"
+          material="transparent:true"
+        ></a-plane>
+        <a-plane
+          src="#tx_wall2_g_p"
+          scale="6.25 3 1"
+          position="0 1.5 0"
+          rotation="0 270 0"
+          material="transparent:true"
+        ></a-plane>
+        <a-plane
+          src="#tx_wall2_y_b"
+          scale="6.25 3 1"
+          position="0 1.5 0"
+          rotation="0 90 0"
+          material="transparent:true"
+        ></a-plane>
+
+        <a-plane
+          src="#tx_tower_1"
+          scale="1 3.5 1"
+          position="-0.5 1.75 0"
+          rotation="0 270 0"
+          material="transparent:false"
+        ></a-plane>
+        <a-plane
+          src="#tx_tower_2"
+          scale="1 3.5 1"
+          position="0 1.75 0.5"
+          rotation="0 0 0"
+          material="transparent:false"
+        ></a-plane>
+        <a-plane
+          src="#tx_tower_3"
+          scale="1 3.5 1"
+          position="0.5 1.75 0"
+          rotation="0 90 0"
+          material="transparent:false"
+        ></a-plane>
+        <a-plane
+          src="#tx_board_top"
+          scale="2.5 2.5 1"
+          position="0.125 3 -0.6"
+          rotation="-90 180 0 "
+          material="transparent: true"
+        ></a-plane>
+        <a-plane
+          scale="0.5 0.5 1"
+          position="-0.7875 2.2 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+        <a-plane
+          scale="0.5 0.5 1"
+          position="-1.25 1.875 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+        <a-plane
+          scale="0.5 0.5 1"
+          position="-1.75 1.55 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+        <a-plane
+          scale="0.5 0.5 1"
+          position="-2.25 1.2 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+        <a-plane
+          scale="0.5 0.5 1"
+          position="-2.75 0.85 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+        <a-plane
+          scale="1.2 0.5 1"
+          position="-3.5  0.35 -0.25"
+          rotation="-90 0 0"
+          material="color:black"
+        ></a-plane>
+      </a-entity>
+
+      <a-sphere id="trapBall01" position = "0.375 2.5 0.2" scale="0.1 0.1 0.1" material="metalness:1; color:white;" animation="property:position; loop: 1; dir:normal; dur:200; easing:ease-in-out" ></a-sphere>
+      <a-sphere id="trapBall02" position = "0.375 2.5 0.2" scale="0.1 0.1 0.1" material="metalness:1; color:white;" animation="property:position; loop: 1; dir:normal; dur:200; easing:ease-in-out" ></a-sphere>
+      <a-sphere id="trapBall03" position = "0.375 2.5 0.2" scale="0.1 0.1 0.1" material="metalness:1; color:white;" animation="property:position; loop: 1; dir:normal; dur:200; easing:ease-in-out" ></a-sphere>
+      <a-sphere id="trapBall04" position = "0.375 2.5 0.2" scale="0.1 0.1 0.1" material="metalness:1; color:white;" animation="property:position; loop: 1; dir:normal; dur:200; easing:ease-in-out" ></a-sphere>
+      
+      <!-- camera -->
+      <a-entity
+        id="cameraRig"
+        position="5 5 9"
+        rotation="-15 30 0"
+        animation="property:position; loop:1; dir:normal; dur:500;"
+      >
+        <a-camera
+          id="camera01"
+          active="true"
+          wasd-controls.enabled="true"
+          position="0 0 0"
+          rotation="-15 0 0"
+          fov="35"
+        ></a-camera>
+      </a-entity>
+    </a-scene>
+
+    <div class="btn-container">
+      <button id="buttonRoll" class="btn" onclick="game()">
+        <span>Roll</span>
+      </button>
+      <button id="buttonTrap" class="btn" onclick="trapAnimation(1)">
+        <span>Trap 1</span>
+      </button>
+    </div>
+  </body>
+</html>
+
+<!-- npm i -g five-server@latest && five-server --port=8000 -->
