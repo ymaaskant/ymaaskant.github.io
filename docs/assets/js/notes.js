@@ -18,3 +18,23 @@ async function asyncCall() {
 asyncCall();
 
 //
+
+
+// //example 2:
+// function apiOn(event) {
+//   return new Promise(resolve => {
+//     api.on(event, response => resolve(response));
+//   });
+// }
+
+// async function test() {
+//   return await apiOn( 'someEvent' ); // await is actually optional here
+//                                       // you'd return a Promise either way.
+// }
+
+// async function whatever() {
+//   // snip
+//   const response = await test();
+//   // use response here
+//   // snip
+// }

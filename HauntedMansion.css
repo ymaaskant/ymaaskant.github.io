@@ -49,3 +49,17 @@ body {
 .btn:hover {
     background-color: rgb(179, 79, 174); 
 } 
+
+.btn:disabled {
+    background-color:#080509;
+}
+.btn:disabled span{
+    color: #4f4256;
+}
+
+test{
+    color1:#26a2ef;
+    color2:#7e34a6;
+    color3:#3bb835;
+    color4:#e0e259;
+}
